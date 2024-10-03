@@ -5,12 +5,17 @@ import { Chart as ChartJS, Title, Tooltip, Legend, ArcElement } from 'chart.js';
 ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
 const PieChart = ({ title, stats }) => {
+  // Ensure stats has the expected structure before accessing properties
+  const wins = stats?.win || 0;
+  const losses = stats?.loss || 0;
+  const draws = stats?.draw || 0;
+
   const data = {
     labels: ['Wins', 'Losses', 'Draws'],
     datasets: [
       {
         label: title,
-        data: [stats.win, stats.loss, stats.draw],
+        data: [wins, losses, draws],
         backgroundColor: [
           'rgba(255, 99, 71, 0.9)', // Bright Red for Wins
           'rgba(255, 165, 0, 0.9)',  // Bright Orange for Losses
@@ -60,3 +65,4 @@ const PieChart = ({ title, stats }) => {
 };
 
 export default PieChart;
+

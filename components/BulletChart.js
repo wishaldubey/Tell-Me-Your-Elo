@@ -5,17 +5,18 @@ import { Chart as ChartJS, Title, Tooltip, Legend, BarElement, CategoryScale, Li
 ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
 
 const BulletChart = ({ bulletStats }) => {
+  // Default values for stats if they are not available
+  const wins = bulletStats?.record?.win || 0; // Use optional chaining
+  const losses = bulletStats?.record?.loss || 0; // Use optional chaining
+  const draws = bulletStats?.record?.draw || 0; // Use optional chaining
+  const lastRating = bulletStats?.last?.rating || 0; // Default to 0 if rating is unavailable
+
   const data = {
     labels: ['Wins', 'Losses', 'Draws', 'Last Rating'],
     datasets: [
       {
         label: 'Bullet Stats',
-        data: [
-          bulletStats.record.win,
-          bulletStats.record.loss,
-          bulletStats.record.draw,
-          bulletStats.last.rating,
-        ],
+        data: [wins, losses, draws, lastRating],
         backgroundColor: [
           'rgba(255, 99, 71, 0.9)', // Bright Red for Wins
           'rgba(255, 165, 0, 0.9)',  // Bright Orange for Losses

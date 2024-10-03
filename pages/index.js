@@ -83,7 +83,7 @@ const Home = () => {
       <div className="my-6 text-center">
         <SearchBar onSearch={handleSearch} />
         <p className="text-gray-500 font-mono italic mt-2">
-          Separate usernames with a , to compare
+          Separate usernames with a comma to compare
          
         </p>
       </div>

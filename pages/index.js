@@ -1,48 +1,61 @@
-import React, { useState } from 'react';
-import SearchBar from '../components/SearchBar';
-import UserStats from '../components/UserStats';
-import ChessBoard from '../components/ChessBoard';
+import React, { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import UserStats from "../components/UserStats";
+import ChessBoard from "../components/ChessBoard";
 
 const Home = () => {
   const [userData, setUserData] = useState(null);
-  const [comparisonData, setComparisonData] = useState(null); // For comparison data
-  const [error, setError] = useState('');
-  const [pgn, setPgn] = useState('');
+  const [comparisonData, setComparisonData] = useState(null);
+  const [randomImage, setRandomImage] = useState("");
+  const [pgn, setPgn] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fetchUserData = async (username) => {
     setLoading(true);
     try {
       const res = await fetch(`https://api.chess.com/pub/player/${username}`);
-      if (!res.ok) throw new Error('User not found');
+      if (!res.ok) {
+        if (res.status === 404) {
+          // If the user is not found, select a random image
+          const randomIndex = Math.floor(Math.random() * 3) + 1;
+          setRandomImage(`/${randomIndex}.webp`);
+          setUserData(null); // Clear user data
+          return null;
+        } else {
+          throw new Error("An unexpected error occurred");
+        }
+      }
+
       const data = await res.json();
-      const statsRes = await fetch(`https://api.chess.com/pub/player/${username}/stats`);
+      const statsRes = await fetch(
+        `https://api.chess.com/pub/player/${username}/stats`
+      );
       const statsData = await statsRes.json();
-      return { ...data, stats: statsData }; // Return combined user data
+      return { ...data, stats: statsData };
     } catch (err) {
-      setError(err.message);
+      setRandomImage(""); // Clear random image on other errors
       setUserData(null);
-      return null; // Return null on error
+      return null;
     } finally {
       setLoading(false);
     }
   };
 
   const handleSearch = async (input) => {
-    const usernames = input.split(',').map((name) => name.trim()); // Split and trim usernames
+    const usernames = input.split(",").map((name) => name.trim());
+    setRandomImage(""); // Clear random image on new search
     if (usernames.length === 1) {
-      // If only one username is entered
       const data = await fetchUserData(usernames[0]);
       setUserData(data);
       setComparisonData(null);
     } else if (usernames.length === 2) {
-      // If two usernames are entered
-      const [user1Data, user2Data] = await Promise.all(usernames.map(fetchUserData));
+      const [user1Data, user2Data] = await Promise.all(
+        usernames.map(fetchUserData)
+      );
       if (user1Data && user2Data) {
         setUserData(user1Data);
         setComparisonData(user2Data);
       } else {
-        setError('One or both users not found');
         setUserData(null);
         setComparisonData(null);
       }
@@ -50,7 +63,7 @@ const Home = () => {
   };
 
   const handleGameSelect = async (gameId) => {
-    const gamePgn = ''; // Replace with actual PGN fetching logic
+    const gamePgn = ""; // Replace with actual PGN fetching logic
     setPgn(gamePgn);
   };
 
@@ -70,7 +83,8 @@ const Home = () => {
       <div className="my-6 text-center">
         <SearchBar onSearch={handleSearch} />
         <p className="text-gray-500 font-mono italic mt-2">
-          "Separate usernames with a comma to compare"
+          Separate usernames with a comma to compare example
+          "lipstickeraservishal,charas247"
         </p>
       </div>
 
@@ -81,17 +95,26 @@ const Home = () => {
             Summoning The Grandmasters...
           </p>
         </div>
+      ) : randomImage ? (
+        <div className="flex justify-center items-center h-96">
+          <img
+            src={randomImage}
+            alt="Random 404"
+            className="w-auto h-auto max-w-full max-h-full shadow-lg rounded-lg transform transition duration-300 hover:scale-105"
+          />
+        </div>
       ) : (
         <>
-          {error && <p className="text-red-500">{error}</p>}
-
-          {/* User stats for the first user */}
-          <UserStats userData={userData} error={error} comparisonData={comparisonData} />
+          {/* Display user stats for the first and second users */}
+          <UserStats userData={userData} comparisonData={comparisonData} />
 
           {userData && (
             <div className="mt-4">
               <h2 className="text-2xl">Last 10 Matches</h2>
-              <button onClick={() => handleGameSelect('gameId')} className="bg-blue-500 p-2 rounded">
+              <button
+                onClick={() => handleGameSelect("gameId")}
+                className="bg-blue-500 p-2 rounded"
+              >
                 Select Game
               </button>
             </div>

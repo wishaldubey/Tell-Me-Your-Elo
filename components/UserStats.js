@@ -70,14 +70,14 @@ const UserStats = ({ userData, error, comparisonData }) => {
   return (
     <div className="mt-4 p-4 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg transition-transform duration-300 hover:shadow-xl mx-auto max-w-3xl">
       {/* User Info Section */}
-      <div className="flex justify-between mb-4 border-b border-gray-700 pb-4">
-        <div className="flex items-center">
+      <div className="flex flex-col sm:flex-row justify-between mb-4 border-b border-gray-700 pb-4">
+        <div className="flex flex-col items-center sm:flex-row">
           <img
             src={avatar1}
             alt={username1}
-            className="w-24 h-24 rounded-full border-4 border-blue-600 shadow-lg transition-transform duration-300 hover:scale-105 mr-4"
+            className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-blue-600 shadow-lg transition-transform duration-300 hover:scale-105 mb-4 sm:mb-0 sm:mr-4"
           />
-          <div className="flex flex-col ml-4">
+          <div className="flex flex-col text-center sm:text-left">
             <h2 className="text-2xl font-semibold hover:text-blue-400 transition-colors duration-300">
               {name1}
             </h2>
@@ -86,13 +86,13 @@ const UserStats = ({ userData, error, comparisonData }) => {
           </div>
         </div>
         {comparisonData && (
-          <div className="flex items-center">
+          <div className="flex flex-col items-center sm:flex-row">
             <img
               src={avatar2}
               alt={username2}
-              className="w-24 h-24 rounded-full border-4 border-blue-600 shadow-lg transition-transform duration-300 hover:scale-105 mr-4"
+              className="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-4 border-blue-600 shadow-lg transition-transform duration-300 hover:scale-105 mb-4 sm:mb-0 sm:mr-4"
             />
-            <div className="flex flex-col ml-4">
+            <div className="flex flex-col text-center sm:text-left">
               <h2 className="text-2xl font-semibold hover:text-blue-400 transition-colors duration-300">
                 {name2}
               </h2>
@@ -101,9 +101,8 @@ const UserStats = ({ userData, error, comparisonData }) => {
             </div>
           </div>
         )}
-        {/* Activity Status moved to the right */}
         {!comparisonData && (
-          <div className="flex items-center">
+          <div className="flex items-center justify-center mt-4 sm:mt-0">
             <span
               className={`w-3 h-3 rounded-full ${
                 isOnline1 ? "bg-green-500" : "bg-red-500"
@@ -144,7 +143,7 @@ const UserStats = ({ userData, error, comparisonData }) => {
         )}
       </div>
 
-      {/* Visual Comparison Section for Bullet Chart */}
+      {/* Visual Comparison Section */}
       {comparisonData && (
         <div className="mt-6 p-4 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg shadow-lg">
           <h3 className="text-2xl font-semibold text-white mb-4 text-center">

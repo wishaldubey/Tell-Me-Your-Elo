@@ -1,13 +1,12 @@
 import React, { useState } from "react";
+import Link from "next/link";
 import SearchBar from "../components/SearchBar";
 import UserStats from "../components/UserStats";
-import ChessBoard from "../components/ChessBoard";
 
 const Home = () => {
   const [userData, setUserData] = useState(null);
   const [comparisonData, setComparisonData] = useState(null);
   const [randomImage, setRandomImage] = useState("");
-  const [pgn, setPgn] = useState("");
   const [loading, setLoading] = useState(false);
 
   const fetchUserData = async (username) => {
@@ -16,10 +15,9 @@ const Home = () => {
       const res = await fetch(`https://api.chess.com/pub/player/${username}`);
       if (!res.ok) {
         if (res.status === 404) {
-          // If the user is not found, select a random image
           const randomIndex = Math.floor(Math.random() * 3) + 1;
           setRandomImage(`/${randomIndex}.webp`);
-          setUserData(null); // Clear user data
+          setUserData(null);
           return null;
         } else {
           throw new Error("An unexpected error occurred");
@@ -33,7 +31,7 @@ const Home = () => {
       const statsData = await statsRes.json();
       return { ...data, stats: statsData };
     } catch (err) {
-      setRandomImage(""); // Clear random image on other errors
+      setRandomImage("");
       setUserData(null);
       return null;
     } finally {
@@ -43,7 +41,7 @@ const Home = () => {
 
   const handleSearch = async (input) => {
     const usernames = input.split(",").map((name) => name.trim());
-    setRandomImage(""); // Clear random image on new search
+    setRandomImage("");
     if (usernames.length === 1) {
       const data = await fetchUserData(usernames[0]);
       setUserData(data);
@@ -62,13 +60,31 @@ const Home = () => {
     }
   };
 
-  const handleGameSelect = async (gameId) => {
-    const gamePgn = ""; // Replace with actual PGN fetching logic
-    setPgn(gamePgn);
-  };
-
   return (
     <div className="container mx-auto p-4">
+      {/* Lightweight Navigation Bar */}
+      <nav className="w-full flex justify-end space-x-6 py-4 mb-6">
+        <Link
+          href="/"
+          className="text-gray-600 hover:text-blue-500 transition-colors"
+        >
+          Home
+        </Link>
+        <Link
+          href="/Analyze"
+          className="text-gray-600 hover:text-blue-500 transition-colors"
+        >
+          Analyze
+        </Link>
+        <Link
+          href="/PrivacyPolicy"
+          className="text-gray-600 hover:text-blue-500 transition-colors"
+        >
+          Privacy Policy
+        </Link>
+      </nav>
+
+      {/* Title and Logo */}
       <div className="flex items-center justify-center mb-6">
         <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
           Tell Me Your Elo
@@ -80,14 +96,15 @@ const Home = () => {
         />
       </div>
 
+      {/* Search Bar */}
       <div className="my-6 text-center">
         <SearchBar onSearch={handleSearch} />
         <p className="text-gray-500 font-mono italic mt-2">
           Separate usernames with a comma to compare
-         
         </p>
       </div>
 
+      {/* Loading or Display */}
       {loading ? (
         <div className="flex flex-col justify-center items-center h-96">
           <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 mb-4"></div>
@@ -105,22 +122,8 @@ const Home = () => {
         </div>
       ) : (
         <>
-          {/* Display user stats for the first and second users */}
+          {/* Display user stats for first and second users */}
           <UserStats userData={userData} comparisonData={comparisonData} />
-
-          {userData && (
-            <div className="mt-4">
-              <h2 className="text-2xl">Last 10 Matches</h2>
-              <button
-                onClick={() => handleGameSelect("gameId")}
-                className="bg-blue-500 p-2 rounded"
-              >
-                Select Game
-              </button>
-            </div>
-          )}
-
-          {pgn && <ChessBoard pgn={pgn} />}
         </>
       )}
     </div>

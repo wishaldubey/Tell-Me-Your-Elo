@@ -3,15 +3,19 @@ import { Chessboard } from "react-chessboard";
 import { Chess } from "chess.js";
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { RiSkipRightLine, RiSkipLeftLine } from "react-icons/ri";
-import { FaTrophy } from "react-icons/fa"; // Import trophy icon
-import { AiOutlineClose } from "react-icons/ai"; // Import close icon
+import { FaTrophy } from "react-icons/fa";
+import { AiOutlineClose } from "react-icons/ai";
 
-// Sound effects
-const moveSound = new Audio("/sounds/move.mp3");
-const captureSound = new Audio("/sounds/capture.mp3");
-const castleSound = new Audio("/sounds/castle.mp3");
-const promoteSound = new Audio("/sounds/promote.mp3");
-const checkSound = new Audio("/sounds/check.mp3");
+let moveSound, captureSound, castleSound, promoteSound, checkSound;
+
+if (typeof window !== "undefined") {
+  // Only initialize sounds in the browser
+  moveSound = new Audio("/sounds/move.mp3");
+  captureSound = new Audio("/sounds/capture.mp3");
+  castleSound = new Audio("/sounds/castle.mp3");
+  promoteSound = new Audio("/sounds/promote.mp3");
+  checkSound = new Audio("/sounds/check.mp3");
+}
 
 const ChessBoard = ({ pgn, whitePlayer, blackPlayer }) => {
   const [game, setGame] = useState(new Chess());
@@ -19,7 +23,7 @@ const ChessBoard = ({ pgn, whitePlayer, blackPlayer }) => {
   const [moves, setMoves] = useState([]);
   const [currentMoveIndex, setCurrentMoveIndex] = useState(0);
   const [winner, setWinner] = useState(null);
-  const [showPopup, setShowPopup] = useState(true); // Control popup visibility
+  const [showPopup, setShowPopup] = useState(true); 
 
   useEffect(() => {
     if (pgn) {
@@ -54,26 +58,26 @@ const ChessBoard = ({ pgn, whitePlayer, blackPlayer }) => {
 
     window.addEventListener("keydown", handleKeyDown);
 
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentMoveIndex, moves]); // Dependencies: currentMoveIndex and moves
+  }, [currentMoveIndex, moves]);
 
   const playSound = (move) => {
-    if (move.includes("x")) {
-      captureSound.play(); // Play capture sound
-    } else if (move === "O-O" || move === "O-O-O") {
-      castleSound.play(); // Play castling sound
-    } else if (move.includes("=")) {
-      promoteSound.play(); // Play promotion sound
-    } else {
-      moveSound.play(); // Play normal move sound
-    }
+    if (typeof window !== "undefined") {
+      if (move.includes("x")) {
+        captureSound.play(); 
+      } else if (move === "O-O" || move === "O-O-O") {
+        castleSound.play(); 
+      } else if (move.includes("=")) {
+        promoteSound.play(); 
+      } else {
+        moveSound.play(); 
+      }
 
-    // Check if it's a check
-    if (move.includes("+")) {
-      checkSound.play(); // Play check sound
+      if (move.includes("+")) {
+        checkSound.play(); 
+      }
     }
   };
 
@@ -82,7 +86,7 @@ const ChessBoard = ({ pgn, whitePlayer, blackPlayer }) => {
     for (let i = 0; i < index; i++) {
       const move = moves[i];
       newGame.move(move);
-      playSound(move); // Play sound based on move
+      playSound(move); 
     }
     setCurrentPosition(newGame.fen());
     setGame(newGame);
@@ -108,17 +112,17 @@ const ChessBoard = ({ pgn, whitePlayer, blackPlayer }) => {
     setGame(new Chess());
     setCurrentPosition("start");
     setCurrentMoveIndex(0);
-    setShowPopup(false); // Hide the popup when restarting
+    setShowPopup(false); 
   };
 
   const handleEndGame = () => {
     setCurrentMoveIndex(moves.length);
-    updatePosition(moves.length); // Jump to the end position
-    setShowPopup(true); // Show the popup when the game ends
+    updatePosition(moves.length); 
+    setShowPopup(true); 
   };
 
   const closePopup = () => {
-    setShowPopup(false); // Close the popup
+    setShowPopup(false); 
   };
 
   return (
@@ -131,7 +135,7 @@ const ChessBoard = ({ pgn, whitePlayer, blackPlayer }) => {
       </div>
 
       {/* Chessboard */}
-      <div className="w-80 h-80 md:w-[450px] md:h-[450px] relative">  {/* Increased board size */}
+      <div className="w-80 h-80 md:w-[450px] md:h-[450px] relative"> 
         <Chessboard position={currentPosition} />
 
         {/* Popup card for the winner */}
@@ -203,7 +207,6 @@ const ChessBoard = ({ pgn, whitePlayer, blackPlayer }) => {
           <RiSkipRightLine className="h-6 w-6" />
         </button>
       </div>
-
     </div>
   );
 };

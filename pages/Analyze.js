@@ -92,7 +92,7 @@ const Analyze = () => {
         <Link href="/" className="text-gray-600 hover:text-blue-500 transition-colors">
           Home
         </Link>
-        <Link href="/analyze" className="text-gray-600 hover:text-blue-500 transition-colors">
+        <Link href="/Analyze" className="text-gray-600 hover:text-blue-500 transition-colors">
           Analyze
         </Link>
         <Link href="/Privacy" className="text-gray-600 hover:text-blue-500 transition-colors">

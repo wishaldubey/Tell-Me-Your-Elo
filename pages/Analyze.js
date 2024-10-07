@@ -101,16 +101,17 @@ const Analyze = () => {
       </nav>
 
       {/* Title and Logo */}
-      <div className="flex items-center justify-center mb-6">
-        <h1 className="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
-          Analyze Your Game
-        </h1>
-        <img
-          src="/chess-logo.png"
-          alt="Chess.com Logo"
-          className="ml-3 w-8.5 h-10 transform rotate-[12deg]"
-        />
-      </div>
+     <div className="flex items-center justify-center mb-6">
+  <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500">
+    Analyze Your Game
+  </h1>
+  <img
+    src="/chess-logo.png"
+    alt="Chess.com Logo"
+    className="ml-3 w-8.5 h-10 transform rotate-[12deg]"
+  />
+</div>
+
 
       {/* Search Bar */}
       <div className="my-6 text-center">

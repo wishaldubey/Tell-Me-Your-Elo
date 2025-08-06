@@ -13,19 +13,19 @@ const Analyze = () => {
   const [year, setYear] = useState(new Date().getFullYear());
   const [month, setMonth] = useState(
     String(new Date().getMonth() + 1).padStart(2, "0")
-  ); // Current month
+  );
   const [whitePlayer, setWhitePlayer] = useState(null);
   const [blackPlayer, setBlackPlayer] = useState(null);
   const [showAll, setShowAll] = useState(false);
-  const [searchInitiated, setSearchInitiated] = useState(false); // New state for search initiation
+  const [searchInitiated, setSearchInitiated] = useState(false);
 
   const years = Array.from(
     { length: 5 },
     (_, i) => new Date().getFullYear() - i
-  ); // Last 5 years
+  );
   const months = Array.from({ length: 12 }, (_, i) =>
     String(i + 1).padStart(2, "0")
-  ); // Months 01-12
+  );
 
   const fetchUserGames = async (username, year, month) => {
     setLoading(true);
@@ -39,19 +39,18 @@ const Analyze = () => {
       }
 
       const data = await res.json();
-      setUserGames(data.games || []); // Assuming games are returned as an array
+      setUserGames(data.games || []);
     } catch (error) {
       console.error("Error fetching user games:", error);
       setUserGames([]);
     } finally {
       setLoading(false);
-      setSearchInitiated(true); // Set search initiated to true after the search is complete
+      setSearchInitiated(true);
     }
   };
 
   const handleGameSelect = (game) => {
     setSelectedGame(game.pgn);
-    // Set player data for the selected game
     setWhitePlayer({
       username: game.white.username,
       rating: game.white.rating,
@@ -64,25 +63,23 @@ const Analyze = () => {
 
   const handleSearch = async (input) => {
     setUsername(input);
-    setSelectedGame(null); // Reset selected game
-    setShowAll(false); // Reset show all state
-    setSearchInitiated(false); // Reset search initiation before a new search
-    // Fetch games based on the selected username, year, and month
+    setSelectedGame(null);
+    setShowAll(false);
+    setSearchInitiated(false);
     await fetchUserGames(input, year, month);
   };
 
   const handleYearMonthChange = () => {
-    // Fetch games whenever the year or month changes
     if (username) {
-      setSelectedGame(null); // Reset selected game
-      setShowAll(false); // Reset show all state
-      setSearchInitiated(false); // Reset search initiation before fetching
+      setSelectedGame(null);
+      setShowAll(false);
+      setSearchInitiated(false);
       fetchUserGames(username, year, month);
     }
   };
 
   useEffect(() => {
-    handleYearMonthChange(); // Fetch games when component mounts
+    handleYearMonthChange();
   }, [year, month]);
 
   const displayedGames = showAll ? userGames : userGames.slice(0, 5);
@@ -121,7 +118,6 @@ const Analyze = () => {
               Review your chess games with our interactive board and detailed analysis
             </p>
           </div>
-
 
           {/* Search Bar */}
           <div className="my-8 text-center">

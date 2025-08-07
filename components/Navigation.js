@@ -8,12 +8,12 @@ const Navigation = () => {
 
   const navItems = [
     { href: "/", label: "Home" },
-    { href: "/analyze", label: "Analyze" },
+    { href: "/game-analysis", label: "Analyze" },
     { href: "/learn", label: "Learn" },
     { href: "/about", label: "About" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },
-    { href: "/privacy", label: "Privacy" },
+    { href: "/privacy-policy", label: "Privacy" },
   ];
 
   const isActive = (href) => {

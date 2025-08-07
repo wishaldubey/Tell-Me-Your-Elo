@@ -45,7 +45,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/analyze" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                <Link href="/game-analysis" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   Game Analysis
                 </Link>
               </li>
@@ -92,7 +92,7 @@ const Footer = () => {
             <h4 className="text-white font-semibold mb-4">Legal</h4>
             <ul className="space-y-2">
               <li>
-                <Link href="/privacy" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                <Link href="/privacy-policy" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   Privacy Policy
                 </Link>
               </li>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -42,6 +43,11 @@ const Contact = () => {
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
         <div className="container mx-auto p-4">
+          {/* Top Display Ad */}
+          <div className="my-6">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
+
           {/* Navigation Bar */}
           <nav className="w-full flex justify-end space-x-6 py-4 mb-6">
             <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors">
@@ -228,6 +234,11 @@ const Contact = () => {
               </div>
             </div>
 
+            {/* In-Feed Ad after contact form */}
+            <div className="my-8">
+              <InFeedAd className="max-w-2xl mx-auto" />
+            </div>
+
             {/* FAQ Section */}
             <div className="mt-12 bg-gray-800/50 backdrop-blur-sm rounded-lg p-8 shadow-xl">
               <h2 className="text-2xl font-bold mb-6 text-blue-400">Frequently Asked Questions</h2>
@@ -261,6 +272,11 @@ const Contact = () => {
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Bottom Display Ad */}
+            <div className="my-8">
+              <DisplayAd className="max-w-4xl mx-auto" />
             </div>
           </div>
         </div>

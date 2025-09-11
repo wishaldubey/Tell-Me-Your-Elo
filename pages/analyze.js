@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar";
 import ChessBoard from "../components/ChessBoard";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
 
 const Analyze = () => {
   const [userGames, setUserGames] = useState([]);
@@ -100,6 +101,11 @@ const Analyze = () => {
         <Navigation />
 
         <div className="container mx-auto p-4">
+          {/* Top Display Ad */}
+          <div className="my-6">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
+
           {/* Title and Logo */}
           <div className="flex items-center justify-center mb-8 mt-8">
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
@@ -125,6 +131,11 @@ const Analyze = () => {
             <p className="text-gray-400 mt-2">
               Enter your Chess.com username to view and analyze your games
             </p>
+          </div>
+
+          {/* In-Feed Ad after search */}
+          <div className="my-8">
+            <InFeedAd className="max-w-2xl mx-auto" />
           </div>
 
           {/* Year and Month Selection */}
@@ -219,6 +230,11 @@ const Analyze = () => {
                   </div>
                 )}
               </div>
+
+              {/* In-Article Ad after games list */}
+              <div className="my-8">
+                <InArticleAd className="max-w-3xl mx-auto" />
+              </div>
             </div>
           ) : searchInitiated && !loading && userGames.length === 0 ? (
             <div className="flex flex-col justify-center items-center h-96">
@@ -235,6 +251,10 @@ const Analyze = () => {
           {/* Display Chess Board if a game is selected */}
           {selectedGame && (
             <div className="mt-8">
+              {/* Multiplex Ad before chess board */}
+              <div className="my-8">
+                <MultiplexAd className="max-w-4xl mx-auto" />
+              </div>
               <div className="text-center mb-6">
                 <button
                   onClick={() => {
@@ -254,6 +274,11 @@ const Analyze = () => {
               />
             </div>
           )}
+
+          {/* Bottom Display Ad */}
+          <div className="my-8">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
         </div>
         
         <Footer />

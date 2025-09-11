@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
 
 const FAQ = () => {
   const [openItems, setOpenItems] = useState({});
@@ -74,6 +75,11 @@ const FAQ = () => {
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
         <div className="container mx-auto p-4">
+          {/* Top Display Ad */}
+          <div className="my-6">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
+
           {/* Navigation Bar */}
           <nav className="w-full flex justify-end space-x-6 py-4 mb-6">
             <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors">
@@ -119,6 +125,11 @@ const FAQ = () => {
             </div>
           </div>
 
+          {/* In-Feed Ad before FAQ items */}
+          <div className="my-8">
+            <InFeedAd className="max-w-2xl mx-auto" />
+          </div>
+
           {/* FAQ Items */}
           <div className="max-w-4xl mx-auto">
             <div className="space-y-4">
@@ -150,6 +161,11 @@ const FAQ = () => {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* In-Article Ad after FAQ items */}
+          <div className="my-8">
+            <InArticleAd className="max-w-3xl mx-auto" />
           </div>
 
           {/* Additional Help Section */}
@@ -237,6 +253,11 @@ const FAQ = () => {
                 </div>
               </div>
             </div>
+          </div>
+
+          {/* Bottom Display Ad */}
+          <div className="my-8">
+            <DisplayAd className="max-w-4xl mx-auto" />
           </div>
         </div>
       </div>

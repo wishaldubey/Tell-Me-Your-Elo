@@ -4,6 +4,7 @@ import SearchBar from "../components/SearchBar";
 import UserStats from "../components/UserStats";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
 
 const Home = () => {
   const [userData, setUserData] = useState(null);
@@ -79,6 +80,11 @@ const Home = () => {
         <Navigation />
 
         <div className="container mx-auto p-4">
+          {/* Top Display Ad */}
+          <div className="my-6">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
+
           {/* Title and Logo */}
           <div className="flex items-center justify-center mb-8 mt-8">
             <h1 className="text-4xl md:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
@@ -109,6 +115,11 @@ const Home = () => {
             </p>
           </div>
 
+          {/* In-Feed Ad after search */}
+          <div className="my-8">
+            <InFeedAd className="max-w-2xl mx-auto" />
+          </div>
+
           {/* Loading or Display */}
           {loading ? (
             <div className="flex flex-col justify-center items-center h-96">
@@ -129,6 +140,11 @@ const Home = () => {
             <>
               {/* Display user stats for first and second users */}
               <UserStats userData={userData} comparisonData={comparisonData} />
+              
+              {/* In-Article Ad after user stats */}
+              <div className="my-8">
+                <InArticleAd className="max-w-3xl mx-auto" />
+              </div>
             </>
           )}
 
@@ -167,8 +183,18 @@ const Home = () => {
                   </p>
                 </div>
               </div>
+              
+              {/* Multiplex Ad after features */}
+              <div className="my-12">
+                <MultiplexAd className="max-w-4xl mx-auto" />
+              </div>
             </div>
           )}
+
+          {/* Bottom Display Ad before footer */}
+          <div className="my-8">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
         </div>
         
         <Footer />

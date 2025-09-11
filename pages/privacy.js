@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
 
 const PrivacyPolicy = () => {
   return (
@@ -20,6 +21,11 @@ const PrivacyPolicy = () => {
         <Navigation />
 
         <div className="container mx-auto p-6">
+          {/* Top Display Ad */}
+          <div className="my-6">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
+
           {/* Title and Logo */}
           <div className="flex items-center justify-center mb-8 mt-8">
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
@@ -73,6 +79,11 @@ const PrivacyPolicy = () => {
                   </div>
                 </section>
 
+                {/* In-Feed Ad after information collection */}
+                <div className="my-8">
+                  <InFeedAd className="max-w-2xl mx-auto" />
+                </div>
+
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">How We Use Your Information</h2>
                   <p className="text-gray-300 leading-relaxed mb-4">
@@ -119,6 +130,11 @@ const PrivacyPolicy = () => {
                     <li>Secure data storage and backup procedures</li>
                   </ul>
                 </section>
+
+                {/* In-Article Ad after data security */}
+                <div className="my-8">
+                  <InArticleAd className="max-w-3xl mx-auto" />
+                </div>
 
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">Your Privacy Rights</h2>
@@ -177,6 +193,11 @@ const PrivacyPolicy = () => {
                   </div>
                 </section>
               </div>
+            </div>
+
+            {/* Bottom Display Ad */}
+            <div className="my-8">
+              <DisplayAd className="max-w-4xl mx-auto" />
             </div>
           </div>
         </div>

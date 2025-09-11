@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
+import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
 
 const Learn = () => {
   const chessResources = [
@@ -100,6 +101,11 @@ const Learn = () => {
         <Navigation />
 
         <div className="container mx-auto p-4">
+          {/* Top Display Ad */}
+          <div className="my-6">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
+
           {/* Title and Logo */}
           <div className="flex items-center justify-center mb-8 mt-8">
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
@@ -128,6 +134,11 @@ const Learn = () => {
               Essential Chess Knowledge
             </h2>
             
+            {/* In-Feed Ad before learning resources */}
+            <div className="my-8">
+              <InFeedAd className="max-w-2xl mx-auto" />
+            </div>
+
             <div className="space-y-12">
               {chessResources.map((category, index) => (
                 <div key={index} className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-8 shadow-xl">
@@ -150,6 +161,11 @@ const Learn = () => {
                   </div>
                 </div>
               ))}
+            </div>
+
+            {/* In-Article Ad after learning resources */}
+            <div className="my-8">
+              <InArticleAd className="max-w-3xl mx-auto" />
             </div>
 
             {/* Study Tips Section */}
@@ -270,6 +286,11 @@ const Learn = () => {
               </div>
             </div>
 
+            {/* Multiplex Ad before recommended resources */}
+            <div className="my-8">
+              <MultiplexAd className="max-w-4xl mx-auto" />
+            </div>
+
             {/* Recommended Resources */}
             <div className="mt-16 bg-gradient-to-r from-blue-500/10 to-purple-500/10 backdrop-blur-sm rounded-lg p-8 shadow-xl border border-blue-500/20">
               <h2 className="text-3xl font-bold text-center text-white mb-8">
@@ -322,6 +343,11 @@ const Learn = () => {
                   </a>
                 </div>
               </div>
+            </div>
+
+            {/* Bottom Display Ad */}
+            <div className="my-8">
+              <DisplayAd className="max-w-4xl mx-auto" />
             </div>
           </div>
         </div>

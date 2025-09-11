@@ -1,6 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Head from "next/head";
+import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
 
 const Terms = () => {
   return (
@@ -14,6 +15,11 @@ const Terms = () => {
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
         <div className="container mx-auto p-4">
+          {/* Top Display Ad */}
+          <div className="my-6">
+            <DisplayAd className="max-w-4xl mx-auto" />
+          </div>
+
           {/* Navigation Bar */}
           <nav className="w-full flex justify-end space-x-6 py-4 mb-6">
             <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors">
@@ -80,6 +86,11 @@ const Terms = () => {
                   </ul>
                 </section>
 
+                {/* In-Feed Ad after service description */}
+                <div className="my-8">
+                  <InFeedAd className="max-w-2xl mx-auto" />
+                </div>
+
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">3. User Responsibilities</h2>
                   <p className="text-gray-300 leading-relaxed mb-4">
@@ -120,6 +131,11 @@ const Terms = () => {
                   </p>
                 </section>
 
+                {/* In-Article Ad after intellectual property */}
+                <div className="my-8">
+                  <InArticleAd className="max-w-3xl mx-auto" />
+                </div>
+
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">6. Service Availability</h2>
                   <p className="text-gray-300 leading-relaxed mb-4">
@@ -152,6 +168,11 @@ const Terms = () => {
                     Our service integrates with Chess.com's API and may include links to external websites. We are not responsible for the content, privacy policies, or practices of these third-party services. Your use of third-party services is subject to their respective terms and conditions.
                   </p>
                 </section>
+
+                {/* Multiplex Ad before termination */}
+                <div className="my-8">
+                  <MultiplexAd className="max-w-4xl mx-auto" />
+                </div>
 
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">9. Termination</h2>
@@ -188,6 +209,11 @@ const Terms = () => {
                   We're here to help! Contact us if you need clarification on any of these terms or have concerns about your use of our service.
                 </p>
               </div>
+            </div>
+
+            {/* Bottom Display Ad */}
+            <div className="my-8">
+              <DisplayAd className="max-w-4xl mx-auto" />
             </div>
           </div>
         </div>

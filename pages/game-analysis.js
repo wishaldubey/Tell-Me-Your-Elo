@@ -88,13 +88,17 @@ const GameAnalysis = () => {
   return (
     <>
       <Head>
-        <title>Chess Game Analysis - Tell Me Your Elo | Analyze Your Games</title>
-        <meta name="description" content="Analyze your chess games with our interactive board. View game history, study moves, and improve your chess skills with detailed game analysis tools." />
+        <title>Analyze Chess Games — Tell Me Your Elo | Move-by-Move Review</title>
+        <meta name="description" content="Review your Chess.com games move by move on an interactive board. Pick a month, replay the moves and spot the mistakes holding your Elo back." />
         <meta name="keywords" content="chess game analysis, chess board, game review, chess moves, chess improvement, pgn analysis, chess study" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Chess Game Analysis - Tell Me Your Elo" />
-        <meta property="og:description" content="Analyze your chess games with our interactive board and detailed move analysis." />
         <meta property="og:type" content="website" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/game-analysis" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/game-analysis" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="Analyze Chess Games — Tell Me Your Elo | Move-by-Move Review" />
+        <meta property="og:description" content="Review your Chess.com games move by move on an interactive board. Pick a month, replay the moves and spot the mistakes holding your Elo back." />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">

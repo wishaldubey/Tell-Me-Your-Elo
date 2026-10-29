@@ -2,19 +2,23 @@ import React from "react";
 import Head from "next/head";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
-import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
+import { DisplayAd } from "../components/ads";
 
 const PrivacyPolicyPage = () => {
   return (
     <>
       <Head>
-        <title>Privacy Policy - Tell Me Your Elo | Data Protection & Privacy</title>
+        <title>Privacy Policy - Tell Me Your Elo | Data & Privacy</title>
         <meta name="description" content="Read our comprehensive privacy policy. Learn how Tell Me Your Elo protects your data and respects your privacy while providing chess analysis services." />
         <meta name="keywords" content="privacy policy, data protection, chess privacy, user data, GDPR compliance" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Privacy Policy - Tell Me Your Elo" />
-        <meta property="og:description" content="Learn how we protect your privacy and handle data in our chess analysis platform." />
         <meta property="og:type" content="website" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/privacy-policy" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/privacy-policy" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="Privacy Policy - Tell Me Your Elo | Data Protection & Privacy" />
+        <meta property="og:description" content="Read our comprehensive privacy policy. Learn how Tell Me Your Elo protects your data and respects your privacy while providing chess analysis services." />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
@@ -80,9 +84,6 @@ const PrivacyPolicyPage = () => {
                 </section>
 
                 {/* In-Feed Ad after information collection */}
-                <div className="my-8">
-                  <InFeedAd className="max-w-2xl mx-auto" />
-                </div>
 
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">How We Use Your Information</h2>
@@ -132,9 +133,6 @@ const PrivacyPolicyPage = () => {
                 </section>
 
                 {/* In-Article Ad after data security */}
-                <div className="my-8">
-                  <InArticleAd className="max-w-3xl mx-auto" />
-                </div>
 
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">Your Privacy Rights</h2>
@@ -196,9 +194,6 @@ const PrivacyPolicyPage = () => {
             </div>
 
             {/* Bottom Display Ad */}
-            <div className="my-8">
-              <DisplayAd className="max-w-4xl mx-auto" />
-            </div>
           </div>
         </div>
         

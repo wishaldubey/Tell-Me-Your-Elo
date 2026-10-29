@@ -1,0 +1,11 @@
+# Tell Me Your Elo
+
+> Free Chess.com Elo checker. Enter a Chess.com username to see bullet, blitz, rapid and daily ratings, game history and stats, and compare two players side by side. No sign-up.
+
+## Pages
+
+- [Home: check your chess Elo](https://tellmeyourelo.vercel.app/): free Chess.com Elo checker and rating tracker
+- [Analyze chess games](https://tellmeyourelo.vercel.app/game-analysis): move-by-move game review on an interactive board
+- [Improve your chess](https://tellmeyourelo.vercel.app/learn): opening principles, tactical patterns, endgame essentials and study plans
+- [Chess Elo FAQ](https://tellmeyourelo.vercel.app/faq): how to check, track and improve your Chess.com rating
+- [About](https://tellmeyourelo.vercel.app/about): what Tell Me Your Elo does and how it uses Chess.com's public API

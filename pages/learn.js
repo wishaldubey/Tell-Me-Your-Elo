@@ -88,13 +88,17 @@ const Learn = () => {
   return (
     <>
       <Head>
-        <title>Chess Learning Resources - Tell Me Your Elo | Improve Your Game</title>
-        <meta name="description" content="Comprehensive chess learning resources to improve your game. Learn opening principles, tactical patterns, endgame essentials, and study tips from chess experts." />
+        <title>Improve Your Chess — Openings, Tactics & Endgames</title>
+        <meta name="description" content="Learn how to improve your chess Elo: opening principles, tactical patterns, endgame essentials and a study plan for beginners to advanced players." />
         <meta name="keywords" content="chess learning, chess improvement, chess tactics, chess strategy, chess openings, chess endgames, chess study" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Chess Learning Resources - Tell Me Your Elo" />
-        <meta property="og:description" content="Comprehensive chess learning resources to help you improve your game and increase your rating." />
         <meta property="og:type" content="website" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/learn" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/learn" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="Improve Your Chess — Openings, Tactics & Endgames" />
+        <meta property="og:description" content="Learn how to improve your chess Elo: opening principles, tactical patterns, endgame essentials and a study plan for beginners to advanced players." />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
@@ -336,7 +340,7 @@ const Learn = () => {
                     Check Your Rating
                   </a>
                   <a
-                    href="/analyze"
+                    href="/game-analysis"
                     className="inline-block bg-purple-500 hover:bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
                   >
                     Analyze Your Games

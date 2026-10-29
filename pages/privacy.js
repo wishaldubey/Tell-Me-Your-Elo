@@ -8,13 +8,17 @@ const PrivacyPolicy = () => {
   return (
     <>
       <Head>
-        <title>Privacy Policy - Tell Me Your Elo | Data Protection & Privacy</title>
+        <title>Privacy Policy - Tell Me Your Elo | Data & Privacy</title>
         <meta name="description" content="Read our comprehensive privacy policy. Learn how Tell Me Your Elo protects your data and respects your privacy while providing chess analysis services." />
         <meta name="keywords" content="privacy policy, data protection, chess privacy, user data, GDPR compliance" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Privacy Policy - Tell Me Your Elo" />
-        <meta property="og:description" content="Learn how we protect your privacy and handle data in our chess analysis platform." />
         <meta property="og:type" content="website" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/privacy-policy" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/privacy-policy" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="Privacy Policy - Tell Me Your Elo | Data Protection & Privacy" />
+        <meta property="og:description" content="Read our comprehensive privacy policy. Learn how Tell Me Your Elo protects your data and respects your privacy while providing chess analysis services." />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">

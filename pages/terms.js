@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import Head from "next/head";
-import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
+import { DisplayAd } from "../components/ads";
 
 const Terms = () => {
   return (
@@ -11,6 +11,12 @@ const Terms = () => {
         <meta name="description" content="Read the Terms of Service for Tell Me Your Elo. Understand your rights and responsibilities when using our chess rating analysis platform." />
         <meta name="keywords" content="terms of service, legal, chess platform terms, user agreement" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/terms" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/terms" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="Terms of Service - Tell Me Your Elo | Legal Terms" />
+        <meta property="og:description" content="Read the Terms of Service for Tell Me Your Elo. Understand your rights and responsibilities when using our chess rating analysis platform." />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
@@ -25,7 +31,7 @@ const Terms = () => {
             <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors">
               Home
             </Link>
-            <Link href="/analyze" className="text-gray-300 hover:text-blue-400 transition-colors">
+            <Link href="/game-analysis" className="text-gray-300 hover:text-blue-400 transition-colors">
               Analyze
             </Link>
             <Link href="/about" className="text-gray-300 hover:text-blue-400 transition-colors">
@@ -37,7 +43,7 @@ const Terms = () => {
             <Link href="/terms" className="text-blue-400 font-semibold">
               Terms
             </Link>
-            <Link href="/privacy" className="text-gray-300 hover:text-blue-400 transition-colors">
+            <Link href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors">
               Privacy Policy
             </Link>
           </nav>
@@ -87,9 +93,6 @@ const Terms = () => {
                 </section>
 
                 {/* In-Feed Ad after service description */}
-                <div className="my-8">
-                  <InFeedAd className="max-w-2xl mx-auto" />
-                </div>
 
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">3. User Responsibilities</h2>
@@ -132,9 +135,6 @@ const Terms = () => {
                 </section>
 
                 {/* In-Article Ad after intellectual property */}
-                <div className="my-8">
-                  <InArticleAd className="max-w-3xl mx-auto" />
-                </div>
 
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">6. Service Availability</h2>
@@ -170,9 +170,6 @@ const Terms = () => {
                 </section>
 
                 {/* Multiplex Ad before termination */}
-                <div className="my-8">
-                  <MultiplexAd className="max-w-4xl mx-auto" />
-                </div>
 
                 <section>
                   <h2 className="text-2xl font-bold mb-4 text-blue-400">9. Termination</h2>
@@ -212,9 +209,6 @@ const Terms = () => {
             </div>
 
             {/* Bottom Display Ad */}
-            <div className="my-8">
-              <DisplayAd className="max-w-4xl mx-auto" />
-            </div>
           </div>
         </div>
       </div>

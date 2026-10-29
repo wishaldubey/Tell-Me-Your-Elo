@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import SearchBar from "../components/SearchBar";
@@ -12,6 +12,19 @@ const Home = () => {
   const [comparisonData, setComparisonData] = useState(null);
   const [randomImage, setRandomImage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // --- Rewarded search gate (AdSense rewarded ads, beta) ---
+  // TODO: paste your real rewarded ad unit slot ID here.
+  // Create it in AdSense > Ads > By ad unit > Rewarded ads (NOT the
+  // Offerwall auto-created unit). Until this is a real numeric slot ID,
+  // the gate stays dormant and searches work exactly as before, so the
+  // site never breaks on a missing/invalid slot.
+  const REWARDED_AD_SLOT_ID = "";
+  const [pendingSearch, setPendingSearch] = useState(null);
+  const [rewardedAd, setRewardedAd] = useState(null);
+  const [rewardStatus, setRewardStatus] = useState("idle"); // idle | loading | ready | unavailable
+  const [resultMode, setResultMode] = useState(null); // null | "full" | "basic"
+  const rewardedAdRef = useRef(null);
 
   const fetchUserData = async (username) => {
     setLoading(true);
@@ -43,13 +56,18 @@ const Home = () => {
     }
   };
 
-  const handleSearch = async (input) => {
+  // Fetches and shows results. mode="full" shows the full UserStats
+  // charts; mode="basic" shows only the core Elo answer (see BasicStats
+  // below). A 404 still shows the not-found image, not a gated result.
+  const runSearch = async (input, mode) => {
     const usernames = input.split(",").map((name) => name.trim());
     setRandomImage("");
+    setResultMode(null);
     if (usernames.length === 1) {
       const data = await fetchUserData(usernames[0]);
       setUserData(data);
       setComparisonData(null);
+      if (data) setResultMode(mode);
     } else if (usernames.length === 2) {
       const [user1Data, user2Data] = await Promise.all(
         usernames.map(fetchUserData)
@@ -57,11 +75,82 @@ const Home = () => {
       if (user1Data && user2Data) {
         setUserData(user1Data);
         setComparisonData(user2Data);
+        setResultMode(mode);
       } else {
         setUserData(null);
         setComparisonData(null);
       }
     }
+  };
+
+  // Search button click: do NOT fetch yet. Show the rewarded gate and
+  // load a rewarded ad. The ad itself is only shown after the user taps
+  // "Watch ad" (affirmative opt-in, as AdSense rewarded policy requires).
+  const handleSearch = (input) => {
+    if (rewardedAdRef.current) {
+      try { rewardedAdRef.current.disposeAd(); } catch (e) {}
+      rewardedAdRef.current = null;
+    }
+    setRewardedAd(null);
+    setUserData(null);
+    setComparisonData(null);
+    setResultMode(null);
+    setRandomImage("");
+    // No slot configured yet: gate dormant, old behaviour preserved.
+    if (!REWARDED_AD_SLOT_ID) {
+      runSearch(input, "full");
+      return;
+    }
+    setPendingSearch(input);
+    setRewardStatus("loading");
+    try {
+      const adsbygoogle = window.adsbygoogle || [];
+      adsbygoogle.push({
+        params: {
+          google_ad_slot: REWARDED_AD_SLOT_ID,
+          google_ad_format: "rewarded",
+          google_ad_loaded_callback: (ad) => {
+            if (ad) {
+              rewardedAdRef.current = ad;
+              setRewardedAd(ad);
+              setRewardStatus("ready");
+            } else {
+              setRewardStatus("unavailable");
+            }
+          },
+        },
+      });
+    } catch (e) {
+      setRewardStatus("unavailable");
+    }
+  };
+
+  const handleWatchAd = () => {
+    const ad = rewardedAdRef.current;
+    if (!ad) return;
+    const input = pendingSearch;
+    ad.show((result) => {
+      const viewed = result && result.status === "viewed";
+      setPendingSearch(null);
+      setRewardedAd(null);
+      rewardedAdRef.current = null;
+      setRewardStatus("idle");
+      try { ad.disposeAd(); } catch (e) {}
+      // Viewed = full results. Closed early / dismissed = basic Elo only,
+      // never nothing: AdSense policy says skipping a rewarded ad must
+      // not impede normal use of the site, and the core Elo answer is
+      // the site's normal use.
+      runSearch(input, viewed ? "full" : "basic");
+    });
+  };
+
+  const handleSkipAd = () => {
+    const input = pendingSearch;
+    setPendingSearch(null);
+    setRewardedAd(null);
+    rewardedAdRef.current = null;
+    setRewardStatus("idle");
+    runSearch(input, "basic");
   };
 
   const homeSchema = {
@@ -144,6 +233,41 @@ const Home = () => {
             </p>
           </div>
 
+          {/* Rewarded gate: shown after the search button, before any result. */}
+          {pendingSearch && (
+            <div className="max-w-2xl mx-auto my-8 bg-gray-800/70 backdrop-blur-sm rounded-lg p-6 shadow-xl text-center">
+              <h3 className="text-xl font-bold text-white mb-3">Watch a short ad to unlock full stats</h3>
+              <p className="text-gray-300 mb-2">
+                Watch a short ad (usually 5–30 seconds) to see detailed stats, charts
+                and comparisons for <span className="text-blue-400 font-semibold">{pendingSearch}</span>.
+              </p>
+              <p className="text-gray-400 text-sm mb-5">
+                Your basic Elo rating is always free. If you close the ad early you
+                will still see your basic Elo, just not the full detailed stats.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <button
+                  onClick={handleWatchAd}
+                  disabled={rewardStatus !== "ready"}
+                  className="bg-blue-600 hover:bg-blue-700 disabled:bg-gray-600 disabled:cursor-not-allowed text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                >
+                  {rewardStatus === "loading" ? "Loading ad…" : rewardStatus === "unavailable" ? "No ad available" : "Watch ad to see full results"}
+                </button>
+                <button
+                  onClick={handleSkipAd}
+                  className="bg-gray-700 hover:bg-gray-600 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+                >
+                  Show basic Elo only
+                </button>
+              </div>
+              {rewardStatus === "unavailable" && (
+                <p className="text-gray-400 text-sm mt-4">
+                  No rewarded ad is available right now. Use basic Elo, or try again later.
+                </p>
+              )}
+            </div>
+          )}
+
           {/* In-Feed Ad after search */}
           <div className="my-8">
             <InFeedAd className="max-w-2xl mx-auto" />
@@ -167,8 +291,27 @@ const Home = () => {
             </div>
           ) : (
             <>
-              {/* Display user stats for first and second users */}
-              <UserStats userData={userData} comparisonData={comparisonData} />
+              {/* Full results only after a completed rewarded ad (or when no
+                  slot is configured yet). Basic Elo only after skip/close. */}
+              {resultMode === "basic" && userData ? (
+                <div className="mt-4 p-6 bg-gradient-to-r from-gray-900 to-gray-800 text-white rounded-lg shadow-lg mx-auto max-w-3xl text-center">
+                  <h2 className="text-2xl font-semibold">{userData.name || userData.username}</h2>
+                  <p className="text-gray-300">@{userData.username}</p>
+                  <p className="text-xl font-bold text-blue-400 mt-4">
+                    Elo Rating: {userData.stats?.chess_rapid?.last?.rating || "N/A"}
+                  </p>
+                  {comparisonData && (
+                    <p className="text-xl font-bold text-blue-400 mt-2">
+                      {comparisonData.username}: {comparisonData.stats?.chess_rapid?.last?.rating || "N/A"}
+                    </p>
+                  )}
+                  <p className="text-gray-400 text-sm mt-4">
+                    Watch the ad above on your next search to unlock detailed stats, charts and comparisons.
+                  </p>
+                </div>
+              ) : (
+                <UserStats userData={userData} comparisonData={comparisonData} />
+              )}
               
               {/* In-Article Ad after user stats */}
               <div className="my-8">
@@ -178,7 +321,7 @@ const Home = () => {
           )}
 
           {/* Features Section */}
-          {!userData && !loading && !randomImage && (
+          {!userData && !loading && !randomImage && !pendingSearch && (
             <div className="mt-16">
               <h2 className="text-3xl font-bold text-center text-white mb-12">
                 Powerful Chess Analysis Tools

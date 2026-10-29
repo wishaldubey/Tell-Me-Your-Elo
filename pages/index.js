@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import SearchBar from "../components/SearchBar";
 import UserStats from "../components/UserStats";
 import Navigation from "../components/Navigation";
@@ -63,17 +64,45 @@ const Home = () => {
     }
   };
 
+  const homeSchema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://tellmeyourelo.vercel.app/#website",
+        url: "https://tellmeyourelo.vercel.app/",
+        name: "Tell Me Your Elo",
+        description: "Free Chess.com Elo checker: check your chess rating, stats and game history, and compare players.",
+      },
+      {
+        "@type": "WebApplication",
+        name: "Tell Me Your Elo",
+        url: "https://tellmeyourelo.vercel.app/",
+        applicationCategory: "SportsApplication",
+        operatingSystem: "Web",
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+      },
+    ],
+  };
+
   return (
     <>
       <Head>
-        <title>Tell Me Your Elo - Chess Rating Analysis & Game Statistics</title>
-        <meta name="description" content="Analyze your chess performance with Tell Me Your Elo. Get detailed statistics, compare players, and track your rating progress across all time controls on Chess.com." />
+        <title>Check Your Chess Elo — Tell Me Your Elo | Chess.com Stats</title>
+        <meta name="description" content="Enter your Chess.com username to check your Elo rating free — bullet, blitz, rapid and daily stats, game history and player comparison, no sign-up needed." />
         <meta name="keywords" content="chess, elo rating, chess analysis, chess.com, chess statistics, chess rating tracker, chess performance, chess games" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta property="og:title" content="Tell Me Your Elo - Chess Rating Analysis" />
-        <meta property="og:description" content="Analyze your chess performance with detailed statistics and player comparisons." />
         <meta property="og:type" content="website" />
-        <link rel="canonical" href="https://tellmeyourelo.com" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="Check Your Chess Elo — Tell Me Your Elo | Chess.com Stats" />
+        <meta property="og:description" content="Enter your Chess.com username to check your Elo rating free — bullet, blitz, rapid and daily stats, game history and player comparison, no sign-up needed." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
+        />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
@@ -190,6 +219,65 @@ const Home = () => {
               </div>
             </div>
           )}
+
+          {/* SEO content: what Elo means, how to check it, and what it says about you.
+              This is always visible (unlike the tool results above) so search engines
+              and AdSense can classify the page, and so visitors have a reason to stay. */}
+          <section className="max-w-4xl mx-auto mt-16 space-y-10 text-left">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-8 shadow-xl">
+              <h2 className="text-2xl font-bold text-white mb-4">What is my Chess Elo rating?</h2>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Your Elo rating is a single number that summarises how strong you are against
+                other players. Win against a stronger opponent and it rises a lot; lose to a
+                weaker one and it falls a lot; beat someone you were expected to beat and it
+                barely moves. That is why two players can play the same number of games and
+                end up hundreds of points apart.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                On Chess.com you do not have one rating, you have one per time control:
+                bullet, blitz, rapid and daily are tracked separately, so a fast blitz
+                rating and a slow daily rating for the same player can be very different.
+                Chess.com ratings are also not the same scale as FIDE ratings — use them to
+                track your own progress and compare with other Chess.com players, not as a
+                direct FIDE equivalent. Enter your username above to see all four, plus your
+                recent game history.
+              </p>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-8 shadow-xl">
+              <h2 className="text-2xl font-bold text-white mb-4">How to check your Elo on Chess.com</h2>
+              <ol className="list-decimal list-inside space-y-2 text-gray-300 leading-relaxed">
+                <li>Type your exact Chess.com username in the search box above and search — no sign-up is needed, and only public data is read.</li>
+                <li>Read your bullet, blitz, rapid and daily ratings side by side, with your win, loss and draw record for each.</li>
+                <li>To compare with a friend or rival, enter two usernames separated by a comma.</li>
+                <li>To go deeper, <Link href="/game-analysis" className="text-blue-400 hover:underline">analyze your games move by move</Link> and find the mistakes that cost you points.</li>
+              </ol>
+              <p className="text-gray-300 leading-relaxed mt-4">
+                If a player cannot be found, check the spelling first — Chess.com usernames
+                are case-sensitive — then check the profile is public. More answers are on
+                the <Link href="/faq" className="text-blue-400 hover:underline">Chess Elo FAQ</Link>.
+              </p>
+            </div>
+
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-8 shadow-xl">
+              <h2 className="text-2xl font-bold text-white mb-4">What your Elo says about you — and what it does not</h2>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                As a rough guide, under 800 is still learning the basics, 800–1200 is a
+                club beginner who knows the rules and a few tactics, 1200–1600 is a solid
+                intermediate, 1600–2000 is a strong club player, and above 2000 is expert
+                territory. The exact cut-offs vary by time control and pool, so treat them
+                as a map, not a verdict.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                What Elo does not tell you is <em>why</em> you are stuck. That usually comes
+                from hanging pieces, weak endgames, or one opening you keep losing from —
+                which is exactly what game review and study fix. Start with the{" "}
+                <Link href="/learn" className="text-blue-400 hover:underline">chess improvement guide</Link>:
+                opening principles, tactical patterns and endgame essentials, organised by
+                rating band from beginner to advanced.
+              </p>
+            </div>
+          </section>
 
           {/* Bottom Display Ad before footer */}
           <div className="my-8">

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
+import { DisplayAd } from "../components/ads";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -39,6 +39,12 @@ const Contact = () => {
         <meta name="description" content="Contact Tell Me Your Elo for support, feedback, or questions about our chess rating analysis platform. We're here to help improve your chess experience." />
         <meta name="keywords" content="contact, support, chess help, feedback, chess analysis support" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/contact" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/contact" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="Contact Us - Tell Me Your Elo | Get in Touch" />
+        <meta property="og:description" content="Contact Tell Me Your Elo for support, feedback, or questions about our chess rating analysis platform. We're here to help improve your chess experience." />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
@@ -53,7 +59,7 @@ const Contact = () => {
             <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors">
               Home
             </Link>
-            <Link href="/analyze" className="text-gray-300 hover:text-blue-400 transition-colors">
+            <Link href="/game-analysis" className="text-gray-300 hover:text-blue-400 transition-colors">
               Analyze
             </Link>
             <Link href="/about" className="text-gray-300 hover:text-blue-400 transition-colors">
@@ -62,7 +68,7 @@ const Contact = () => {
             <Link href="/contact" className="text-blue-400 font-semibold">
               Contact
             </Link>
-            <Link href="/privacy" className="text-gray-300 hover:text-blue-400 transition-colors">
+            <Link href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors">
               Privacy Policy
             </Link>
           </nav>
@@ -235,9 +241,6 @@ const Contact = () => {
             </div>
 
             {/* In-Feed Ad after contact form */}
-            <div className="my-8">
-              <InFeedAd className="max-w-2xl mx-auto" />
-            </div>
 
             {/* FAQ Section */}
             <div className="mt-12 bg-gray-800/50 backdrop-blur-sm rounded-lg p-8 shadow-xl">
@@ -275,9 +278,6 @@ const Contact = () => {
             </div>
 
             {/* Bottom Display Ad */}
-            <div className="my-8">
-              <DisplayAd className="max-w-4xl mx-auto" />
-            </div>
           </div>
         </div>
       </div>

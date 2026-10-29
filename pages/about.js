@@ -8,9 +8,15 @@ const About = () => {
     <>
       <Head>
         <title>About Us - Tell Me Your Elo | Chess Rating Analysis Platform</title>
-        <meta name="description" content="Learn about Tell Me Your Elo, the premier chess rating analysis platform. Discover how we help chess players track, analyze, and improve their game performance." />
+        <meta name="description" content="Learn about Tell Me Your Elo, the free Chess.com rating checker. Track, analyze and improve your chess performance across all time controls." />
         <meta name="keywords" content="chess, elo rating, chess analysis, chess.com, chess statistics, chess improvement" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/about" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/about" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="About Us - Tell Me Your Elo | Chess Rating Analysis Platform" />
+        <meta property="og:description" content="Learn about Tell Me Your Elo, the free Chess.com rating checker. Track, analyze and improve your chess performance across all time controls." />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
@@ -25,7 +31,7 @@ const About = () => {
             <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors">
               Home
             </Link>
-            <Link href="/analyze" className="text-gray-300 hover:text-blue-400 transition-colors">
+            <Link href="/game-analysis" className="text-gray-300 hover:text-blue-400 transition-colors">
               Analyze
             </Link>
             <Link href="/about" className="text-blue-400 font-semibold">
@@ -34,7 +40,7 @@ const About = () => {
             <Link href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors">
               Contact
             </Link>
-            <Link href="/privacy" className="text-gray-300 hover:text-blue-400 transition-colors">
+            <Link href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors">
               Privacy Policy
             </Link>
           </nav>

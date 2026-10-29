@@ -64,13 +64,33 @@ const FAQ = () => {
     }
   ];
 
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqData.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  };
+
   return (
     <>
       <Head>
-        <title>FAQ - Tell Me Your Elo | Frequently Asked Questions</title>
-        <meta name="description" content="Find answers to common questions about Tell Me Your Elo chess analysis platform. Learn how to use our features, understand our data, and get the most from our service." />
+        <title>Chess Elo FAQ — Check, Track & Improve Your Rating</title>
+        <meta name="description" content="How do I check my Chess.com Elo? Can I compare two players? Answers on checking, tracking and improving your chess rating, free with no sign-up." />
         <meta name="keywords" content="FAQ, chess questions, help, chess analysis help, chess.com data, chess statistics" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+              <link rel="canonical" href="https://tellmeyourelo.vercel.app/faq" />
+        <meta property="og:url" content="https://tellmeyourelo.vercel.app/faq" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
+        <meta name="twitter:card" content="summary" />
+        <meta property="og:title" content="Chess Elo FAQ — Check, Track & Improve Your Rating" />
+        <meta property="og:description" content="How do I check my Chess.com Elo? Can I compare two players? Answers on checking, tracking and improving your chess rating, free with no sign-up." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
@@ -85,7 +105,7 @@ const FAQ = () => {
             <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors">
               Home
             </Link>
-            <Link href="/analyze" className="text-gray-300 hover:text-blue-400 transition-colors">
+            <Link href="/game-analysis" className="text-gray-300 hover:text-blue-400 transition-colors">
               Analyze
             </Link>
             <Link href="/about" className="text-gray-300 hover:text-blue-400 transition-colors">
@@ -97,7 +117,7 @@ const FAQ = () => {
             <Link href="/faq" className="text-blue-400 font-semibold">
               FAQ
             </Link>
-            <Link href="/privacy" className="text-gray-300 hover:text-blue-400 transition-colors">
+            <Link href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors">
               Privacy Policy
             </Link>
           </nav>

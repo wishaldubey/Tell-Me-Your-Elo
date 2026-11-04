@@ -55,6 +55,16 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/learn" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                  Learn
+                </Link>
+              </li>
+              <li>
+                <Link href="/check-chess-elo" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                  Check Your Elo
+                </Link>
+              </li>
+              <li>
                 <Link href="/faq" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   FAQ
                 </Link>

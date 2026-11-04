@@ -95,10 +95,30 @@ const Learn = () => {
         <meta property="og:type" content="website" />
               <link rel="canonical" href="https://tellmeyourelo.vercel.app/learn" />
         <meta property="og:url" content="https://tellmeyourelo.vercel.app/learn" />
-        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content="Improve Your Chess — Openings, Tactics & Endgames" />
         <meta property="og:description" content="Learn how to improve your chess Elo: opening principles, tactical patterns, endgame essentials and a study plan for beginners to advanced players." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@graph": [
+              {
+                "@type": "WebPage",
+                "@id": "https://tellmeyourelo.vercel.app/learn",
+                url: "https://tellmeyourelo.vercel.app/learn",
+                name: "Improve Your Chess — Openings, Tactics & Endgames",
+              },
+              {
+                "@type": "Article",
+                headline: "Improve Your Chess — Openings, Tactics & Endgames",
+                description: "Learn how to improve your chess Elo: opening principles, tactical patterns, endgame essentials and a study plan for beginners to advanced players.",
+                author: { "@type": "Organization", name: "Tell Me Your Elo" },
+              },
+            ],
+          }) }}
+        />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">

@@ -10,6 +10,7 @@ const Navigation = () => {
     { href: "/", label: "Home" },
     { href: "/game-analysis", label: "Analyze" },
     { href: "/learn", label: "Learn" },
+    { href: "/check-chess-elo", label: "Check Elo" },
     { href: "/about", label: "About" },
     { href: "/faq", label: "FAQ" },
     { href: "/contact", label: "Contact" },

@@ -1,5 +1,7 @@
 import React from "react";
 import Link from "next/link";
+import Navigation from "../components/Navigation";
+import Footer from "../components/Footer";
 import Head from "next/head";
 import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
 
@@ -13,37 +15,20 @@ const About = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
               <link rel="canonical" href="https://tellmeyourelo.vercel.app/about" />
         <meta property="og:url" content="https://tellmeyourelo.vercel.app/about" />
-        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content="About Us - Tell Me Your Elo | Chess Rating Analysis Platform" />
         <meta property="og:description" content="Learn about Tell Me Your Elo, the free Chess.com rating checker. Track, analyze and improve your chess performance across all time controls." />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
+        <Navigation />
+
         <div className="container mx-auto p-4">
           {/* Top Display Ad */}
           <div className="my-6">
             <DisplayAd className="max-w-4xl mx-auto" />
           </div>
-
-          {/* Navigation Bar */}
-          <nav className="w-full flex justify-end space-x-6 py-4 mb-6">
-            <Link href="/" className="text-gray-300 hover:text-blue-400 transition-colors">
-              Home
-            </Link>
-            <Link href="/game-analysis" className="text-gray-300 hover:text-blue-400 transition-colors">
-              Analyze
-            </Link>
-            <Link href="/about" className="text-blue-400 font-semibold">
-              About
-            </Link>
-            <Link href="/contact" className="text-gray-300 hover:text-blue-400 transition-colors">
-              Contact
-            </Link>
-            <Link href="/privacy-policy" className="text-gray-300 hover:text-blue-400 transition-colors">
-              Privacy Policy
-            </Link>
-          </nav>
 
           {/* Title and Logo */}
           <div className="flex items-center justify-center mb-8">
@@ -186,6 +171,7 @@ const About = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

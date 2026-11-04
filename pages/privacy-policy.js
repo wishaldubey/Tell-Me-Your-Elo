@@ -15,8 +15,8 @@ const PrivacyPolicyPage = () => {
         <meta property="og:type" content="website" />
               <link rel="canonical" href="https://tellmeyourelo.vercel.app/privacy-policy" />
         <meta property="og:url" content="https://tellmeyourelo.vercel.app/privacy-policy" />
-        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content="Privacy Policy - Tell Me Your Elo | Data Protection & Privacy" />
         <meta property="og:description" content="Read our comprehensive privacy policy. Learn how Tell Me Your Elo protects your data and respects your privacy while providing chess analysis services." />
       </Head>

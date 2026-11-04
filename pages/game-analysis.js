@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
+import Link from "next/link";
 import SearchBar from "../components/SearchBar";
 import ChessBoard from "../components/ChessBoard";
 import Navigation from "../components/Navigation";
@@ -95,10 +96,22 @@ const GameAnalysis = () => {
         <meta property="og:type" content="website" />
               <link rel="canonical" href="https://tellmeyourelo.vercel.app/game-analysis" />
         <meta property="og:url" content="https://tellmeyourelo.vercel.app/game-analysis" />
-        <meta property="og:image" content="https://tellmeyourelo.vercel.app/chess-logo.png" />
-        <meta name="twitter:card" content="summary" />
+        <meta property="og:image" content="https://tellmeyourelo.vercel.app/og-image.png" />
+        <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content="Analyze Chess Games — Tell Me Your Elo | Move-by-Move Review" />
         <meta property="og:description" content="Review your Chess.com games move by move on an interactive board. Pick a month, replay the moves and spot the mistakes holding your Elo back." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            name: "Tell Me Your Elo — Game Analysis",
+            url: "https://tellmeyourelo.vercel.app/game-analysis",
+            applicationCategory: "SportsApplication",
+            operatingSystem: "Web",
+            offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+          }) }}
+        />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">
@@ -127,6 +140,37 @@ const GameAnalysis = () => {
             <p className="text-lg text-gray-300">
               Review your chess games with our interactive board and detailed analysis
             </p>
+          </div>
+
+
+
+          {/* How game analysis works — always-visible guide copy */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 shadow-xl">
+              <h2 className="text-2xl font-bold mb-4 text-blue-400">How to analyze your Chess.com games</h2>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Pick a month and a year, enter your exact Chess.com username, and the tool lists every
+                game you played in that month. Click any game to replay it move by move on the
+                interactive board, with both players&apos; ratings shown as they were at the time.
+                That replay is where rating points are actually lost and won: a hanging piece in the
+                middlegame, a missed tactic, a lost endgame, or the same opening going wrong again
+                and again.
+              </p>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Use it in a loop, not as a one-off. First, find the pattern — which phase of the
+                game, and which time control, keeps costing you points. Then work on exactly that
+                phase in the <Link href="/learn" className="text-blue-400 hover:underline">chess improvement guide</Link>:
+                opening principles if you keep losing early, tactical patterns if you keep missing
+                forks and pins, endgame essentials if winning positions keep slipping away. Then
+                come back next month and check whether the same mistakes are still there.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                If a month shows no games, try another month first — the username is case-sensitive
+                and the profile must be public. If you have not checked your rating yet, start with
+                the <Link href="/check-chess-elo" className="text-blue-400 hover:underline">step-by-step guide to checking your Chess Elo</Link>,
+                or check it now on the <Link href="/" className="text-blue-400 hover:underline">homepage Elo checker</Link>.
+              </p>
+            </div>
           </div>
 
           {/* Search Bar */}

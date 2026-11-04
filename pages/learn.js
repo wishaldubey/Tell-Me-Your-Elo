@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+import Link from "next/link";
 import Navigation from "../components/Navigation";
 import Footer from "../components/Footer";
 import { DisplayAd, InFeedAd, InArticleAd, MultiplexAd } from "../components/ads";
@@ -88,7 +89,7 @@ const Learn = () => {
   return (
     <>
       <Head>
-        <title>Improve Your Chess — Openings, Tactics & Endgames</title>
+        <title>How to Improve Your Chess Elo — Openings, Tactics & Endgames</title>
         <meta name="description" content="Learn how to improve your chess Elo: opening principles, tactical patterns, endgame essentials and a study plan for beginners to advanced players." />
         <meta name="keywords" content="chess learning, chess improvement, chess tactics, chess strategy, chess openings, chess endgames, chess study" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -97,7 +98,7 @@ const Learn = () => {
         <meta property="og:url" content="https://tellmeyourelo.vercel.app/learn" />
         <meta property="og:image" content="https://tellmeyourelo.vercel.app/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:title" content="Improve Your Chess — Openings, Tactics & Endgames" />
+        <meta property="og:title" content="How to Improve Your Chess Elo — Openings, Tactics & Endgames" />
         <meta property="og:description" content="Learn how to improve your chess Elo: opening principles, tactical patterns, endgame essentials and a study plan for beginners to advanced players." />
         <script
           type="application/ld+json"
@@ -108,11 +109,11 @@ const Learn = () => {
                 "@type": "WebPage",
                 "@id": "https://tellmeyourelo.vercel.app/learn",
                 url: "https://tellmeyourelo.vercel.app/learn",
-                name: "Improve Your Chess — Openings, Tactics & Endgames",
+                name: "How to Improve Your Chess Elo — Openings, Tactics & Endgames",
               },
               {
                 "@type": "Article",
-                headline: "Improve Your Chess — Openings, Tactics & Endgames",
+                headline: "How to Improve Your Chess Elo — Openings, Tactics & Endgames",
                 description: "Learn how to improve your chess Elo: opening principles, tactical patterns, endgame essentials and a study plan for beginners to advanced players.",
                 author: { "@type": "Organization", name: "Tell Me Your Elo" },
               },
@@ -133,7 +134,7 @@ const Learn = () => {
           {/* Title and Logo */}
           <div className="flex items-center justify-center mb-8 mt-8">
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-              Chess Learning Center
+              How to Improve Your Chess Elo
             </h1>
             <img
               src="/chess-logo.png"
@@ -148,8 +149,29 @@ const Learn = () => {
               Master the fundamentals and advanced concepts to improve your chess game
             </p>
             <p className="text-gray-400">
-              From opening principles to endgame mastery - everything you need to elevate your play
+              From opening principles to endgame mastery — everything you need to raise your chess Elo
             </p>
+          </div>
+
+
+
+          {/* Why Elo moves — always-visible intro */}
+          <div className="max-w-4xl mx-auto mb-8">
+            <div className="bg-gray-800/50 backdrop-blur-sm rounded-lg p-6 shadow-xl">
+              <h2 className="text-2xl font-bold mb-4 text-blue-400">How studying raises your Elo</h2>
+              <p className="text-gray-300 leading-relaxed mb-4">
+                Your Elo does not rise because you play more games — it rises when you stop losing
+                the games you should win. That usually means one fixable pattern: hanging pieces,
+                a missed tactic, a lost endgame, or the same opening going wrong again and again.
+                The loop that works is simple: <Link href="/game-analysis" className="text-blue-400 hover:underline">analyze your games</Link> to
+                find the pattern, study exactly that phase below, play, then check your rating
+                again on the <Link href="/" className="text-blue-400 hover:underline">homepage Elo checker</Link>.
+              </p>
+              <p className="text-gray-300 leading-relaxed">
+                Not sure where you stand? See the <Link href="/elo-rating-chart" className="text-blue-400 hover:underline">Chess Elo rating chart</Link> for
+                what each rating band means and what players at your level usually work on next.
+              </p>
+            </div>
           </div>
 
           {/* Chess Learning Resources */}

@@ -164,6 +164,13 @@ const Home = () => {
         description: "Free Chess.com Elo checker: check your chess rating, stats and game history, and compare players.",
       },
       {
+        "@type": "Organization",
+        "@id": "https://tellmeyourelo.vercel.app/#organization",
+        name: "Tell Me Your Elo",
+        url: "https://tellmeyourelo.vercel.app/",
+        logo: "https://tellmeyourelo.vercel.app/og-image.png",
+      },
+      {
         "@type": "WebApplication",
         name: "Tell Me Your Elo",
         url: "https://tellmeyourelo.vercel.app/",
@@ -178,7 +185,7 @@ const Home = () => {
     <>
       <Head>
         <title>Check Your Chess Elo — Tell Me Your Elo | Chess.com Stats</title>
-        <meta name="description" content="Enter your Chess.com username to check your Elo rating free — bullet, blitz, rapid and daily stats, game history and player comparison, no sign-up needed." />
+        <meta name="description" content="Enter your Chess.com username to check your Elo rating free — bullet, blitz, rapid and daily stats, rating tracker and player comparison, no sign-up needed." />
         <meta name="keywords" content="chess, elo rating, chess analysis, chess.com, chess statistics, chess rating tracker, chess performance, chess games" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:type" content="website" />
@@ -187,7 +194,7 @@ const Home = () => {
         <meta property="og:image" content="https://tellmeyourelo.vercel.app/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content="Check Your Chess Elo — Tell Me Your Elo | Chess.com Stats" />
-        <meta property="og:description" content="Enter your Chess.com username to check your Elo rating free — bullet, blitz, rapid and daily stats, game history and player comparison, no sign-up needed." />
+        <meta property="og:description" content="Enter your Chess.com username to check your Elo rating free — bullet, blitz, rapid and daily stats, rating tracker and player comparison, no sign-up needed." />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(homeSchema) }}
@@ -409,7 +416,7 @@ const Home = () => {
                 club beginner who knows the rules and a few tactics, 1200–1600 is a solid
                 intermediate, 1600–2000 is a strong club player, and above 2000 is expert
                 territory. The exact cut-offs vary by time control and pool, so treat them
-                as a map, not a verdict.
+                as a map, not a verdict. See the full <Link href="/elo-rating-chart" className="text-blue-400 hover:underline">Chess Elo rating chart</Link> for every band and what to work on at each level.
               </p>
               <p className="text-gray-300 leading-relaxed">
                 What Elo does not tell you is <em>why</em> you are stuck. That usually comes

@@ -65,6 +65,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link href="/elo-rating-chart" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
+                  Elo Rating Chart
+                </Link>
+              </li>
+              <li>
                 <Link href="/faq" className="text-gray-400 hover:text-blue-400 transition-colors text-sm">
                   FAQ
                 </Link>

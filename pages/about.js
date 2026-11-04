@@ -19,6 +19,18 @@ const About = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="og:title" content="About Us - Tell Me Your Elo | Chess Rating Analysis Platform" />
         <meta property="og:description" content="Learn about Tell Me Your Elo, the free Chess.com rating checker. Track, analyze and improve your chess performance across all time controls." />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "@id": "https://tellmeyourelo.vercel.app/#organization",
+            name: "Tell Me Your Elo",
+            url: "https://tellmeyourelo.vercel.app/",
+            logo: "https://tellmeyourelo.vercel.app/og-image.png",
+            description: "Free Chess.com Elo checker: check your chess rating, stats and game history, and compare players.",
+          }) }}
+        />
       </Head>
       
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">

@@ -81,6 +81,17 @@ const CheckChessElo = () => {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(guideSchema) }}
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Home", item: "https://tellmeyourelo.vercel.app/" },
+              { "@type": "ListItem", position: 2, name: "How to Check Your Chess Elo", item: "https://tellmeyourelo.vercel.app/check-chess-elo" },
+            ],
+          }) }}
+        />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900">

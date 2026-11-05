@@ -89,23 +89,23 @@ const GameAnalysis = () => {
   return (
     <>
       <Head>
-        <title>Analyze Chess Games — Tell Me Your Elo | Move-by-Move Review</title>
-        <meta name="description" content="Review your Chess.com games move by move on an interactive board. Pick a month, replay the moves and spot the mistakes holding your Elo back." />
-        <meta name="keywords" content="chess game analysis, chess board, game review, chess moves, chess improvement, pgn analysis, chess study" />
+        <title>Chess Elo Analysis — Move-by-Move Game Review</title>
+        <meta name="description" content="Chess Elo analysis: review Chess.com games move by move on an interactive board and spot the mistakes holding your Elo back." />
+        <meta name="keywords" content="chess elo analysis, elo analysis, chess game analysis, chess board, game review, chess improvement, pgn analysis" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:type" content="website" />
               <link rel="canonical" href="https://tellmeyourelo.vercel.app/game-analysis" />
         <meta property="og:url" content="https://tellmeyourelo.vercel.app/game-analysis" />
         <meta property="og:image" content="https://tellmeyourelo.vercel.app/og-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta property="og:title" content="Analyze Chess Games — Tell Me Your Elo | Move-by-Move Review" />
-        <meta property="og:description" content="Review your Chess.com games move by move on an interactive board. Pick a month, replay the moves and spot the mistakes holding your Elo back." />
+        <meta property="og:title" content="Chess Elo Analysis — Move-by-Move Game Review" />
+        <meta property="og:description" content="Chess Elo analysis: review Chess.com games move by move on an interactive board and spot the mistakes holding your Elo back." />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "WebApplication",
-            name: "Tell Me Your Elo — Game Analysis",
+            name: "Tell Me Your Elo — Chess Elo Analysis",
             url: "https://tellmeyourelo.vercel.app/game-analysis",
             applicationCategory: "SportsApplication",
             operatingSystem: "Web",
@@ -126,7 +126,7 @@ const GameAnalysis = () => {
           {/* Title and Logo */}
           <div className="flex items-center justify-center mb-8 mt-8">
             <h1 className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
-              Analyze Your Games
+              Chess Elo Analysis
             </h1>
             <img
               src="/chess-logo.png"
@@ -152,7 +152,7 @@ const GameAnalysis = () => {
                 Pick a month and a year, enter your exact Chess.com username, and the tool lists every
                 game you played in that month. Click any game to replay it move by move on the
                 interactive board, with both players&apos; ratings shown as they were at the time.
-                That replay is where rating points are actually lost and won: a hanging piece in the
+                That replay is the heart of an Elo analysis: it is where rating points are actually lost and won: a hanging piece in the
                 middlegame, a missed tactic, a lost endgame, or the same opening going wrong again
                 and again.
               </p>
